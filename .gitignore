@@ -40,6 +40,9 @@ local.properties
 *.suo
 *.user
 *.sln.docstates
+*.o
+*.obj
+*.OBJ
 
 # Build results
 
