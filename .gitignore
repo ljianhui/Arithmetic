@@ -43,6 +43,7 @@ local.properties
 *.o
 *.obj
 *.OBJ
+*.exe
 
 # Build results
 
