@@ -1,6 +1,9 @@
 #ifndef FIND_THE_K_MIN_H_INCLUDED
 #define FIND_THE_K_MIN_H_INCLUDED
 
+#include <stdlib.h>
+#include <time.h>
+
 /**********************************
 问题描述：
 在一个数组中找出其第k个最小的数，例如对于数组x，
@@ -26,7 +29,7 @@ T FindTheKMin(T *x, int x_size, int k);
 
 //返回数组中的第中个最小元素的下标的启动函数，不破坏原数组
 template<typename T>
-int IndexOfKMin(T *x, int x_size, int k);
+int IndexOfKMin(const T *x, int x_size, int k);
 
 //实现查找数组中第K个最小元的功能函数
 template<typename T>
@@ -34,10 +37,12 @@ T TheKMin(T *x, int left, int right, int k);
 
 //实现查找数组中第K个最小元下标的功能函数
 template<typename T>
-int TheKMin(T *x, int *track, int left, int right, int k);
+int TheKMin(const T *x, int *track, int left, int right, int k);
 
 template<typename T>
 void Swap(T &a, T &b);
+
+int Random(int begin, int end);
 
 template<typename T>
 T FindTheKMin(T *x, int x_size, int k)
@@ -47,11 +52,10 @@ T FindTheKMin(T *x, int x_size, int k)
     if(x_size < k)
         return x[0];
     return TheKMin(x, 0, x_size-1, k);
-
 }
 
 template<typename T>
-int IndexOfKMin(T *x, int x_size, int k)
+int IndexOfKMin(const T *x, int x_size, int k)
 {
     //判断k的值是否过大，即超过数组的大小
     //若是则返回下标-1，主要是为了防止无效的递归
@@ -108,7 +112,7 @@ T TheKMin(T *x, int left, int right, int k)
 }
 
 template<typename T>
-int TheKMin(T *x, int *track, int left, int right, int k)
+int TheKMin(const T *x, int *track, int left, int right, int k)
 {
     //取数组最后一个元素为枢纽
     T centre = x[track[right]];
@@ -154,6 +158,12 @@ void Swap(T &a, T &b)
     T tmp(a);
     a = b;
     b = tmp;
+}
+
+int Random(int begin, int end)
+{
+    srand(time(NULL));
+    return rand()%(end + 1) + begin;
 }
 
 #endif // FIND_THE_K_MIN_H_INCLUDED
